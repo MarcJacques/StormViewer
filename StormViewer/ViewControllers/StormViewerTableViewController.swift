@@ -15,7 +15,7 @@ class StormViewerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         let fm = FileManager.default //fileManager allows us to work through the filesystem and will allow us to look through the files in this app.
         let path = Bundle.main.resourcePath!// this lets us have a direct path to our file bundle given from the file manager
         let items = try! fm.contentsOfDirectory(atPath: path)// items allows us to work with the selected file manager and our specifc path to begin going through the files
@@ -42,10 +42,17 @@ class StormViewerTableViewController: UITableViewController {
         cell.textLabel?.text = pictures[indexPath.row]//what the cell contains
         return cell// this is the cell we created from line 41 & 42
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        //1: load StormDetailViewController
+        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? StormDetailViewController {//2: Set the selectedImage to a picture in arrays
+            vc.selectedImage = pictures[indexPath.row]
+            //3: Show the new VC
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-
-
+    
+    
+    
 }
 
