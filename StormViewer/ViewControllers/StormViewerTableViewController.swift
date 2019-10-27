@@ -42,6 +42,9 @@ class StormViewerTableViewController: UITableViewController {
         cell.textLabel?.text = pictures[indexPath.row]//what the cell contains
         return cell// this is the cell we created from line 41 & 42
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
 
 
 }
