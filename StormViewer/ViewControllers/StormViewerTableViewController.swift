@@ -30,6 +30,18 @@ class StormViewerTableViewController: UITableViewController {
         }
         // Do any additional setup after loading the view.
     }
+    // MARK: - Setup Table
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pictures.count // send back the number of pictures in our array as the  umber of rows on our table.
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {// this method creates a TableViewCell
+        //indexpath = is exactly whichrow, this is how we specify the row by section and row number. We don't have multiple sections, so we really only care about rows in this case.
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) //specificy a specific cell
+        cell.textLabel?.text = pictures[indexPath.row]//what the cell contains
+        return cell// this is the cell we created from line 41 & 42
+    }
 
 
 }
