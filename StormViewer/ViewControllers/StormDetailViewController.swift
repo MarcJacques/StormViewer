@@ -14,11 +14,12 @@ class StormDetailViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     var selectedImage: String?
+    var pictureCount: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        title = selectedImage
+        title = pictureCount
         
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)

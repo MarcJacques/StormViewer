@@ -12,6 +12,7 @@ class StormViewerTableViewController: UITableViewController {
     
     // MARK: - Properties
     var pictures = [String]()
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,14 @@ class StormViewerTableViewController: UITableViewController {
         
         for items in items {
             if items.hasPrefix("nssl") {
-                //this for loop loops through all the files in our desired path to load the pictures
+                //this for-loop loops through all the files in our desired path to load the pictures
                 //the if clause helps locate the specifc files that  have a specific prefix
                 pictures.append(items)
+                pictures.sort()
                 print(pictures)
             }
         }
+        
         // Do any additional setup after loading the view.
     }
     // MARK: - Setup Table
@@ -46,11 +49,25 @@ class StormViewerTableViewController: UITableViewController {
         return cell// this is the cell we created from line 41 & 42
     }
     
+    func findIndex( searchValue: String) -> Int {
+        var count = 0
+        for index in pictures {
+            count += 1
+            if index == searchValue {
+            print("count = \(count)")
+                break
+            }
+        }
+        return count
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //1: load StormDetailViewController
         if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? StormDetailViewController {
             //2: Set the selectedImage to a picture in arrays
             vc.selectedImage = pictures[indexPath.row]
+            let index = findIndex(searchValue: pictures[indexPath.row])
+           vc.pictureCount = "\(index) of \(pictures.count)"
             //3: Show the new VC
             navigationController?.pushViewController(vc, animated: true)
         }
