@@ -41,6 +41,7 @@ class StormDetailViewController: UIViewController {
     }
     
     @objc func shareTapped() {
+        //guard let title = title else { return }
         guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
             print("No image found")
             return
